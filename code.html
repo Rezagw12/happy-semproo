@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Selamat Kelulusan Sidang Proposal</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Pacifico&family=Roboto+Slab&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: #f8f6f0;
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .slide {
+    position: absolute;
+    width: 90vw;
+    max-width: 700px;
+    height: 80vh;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(255 255 255 / 0.85);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .slide.active {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  /* To fade out smoothly */
+  .slide.fade-out {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  button {
+    margin-top: 30px;
+    background: #556270;
+    color: #f8f6f0;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgb(85 98 112 / 0.4);
+    outline-offset: 3px;
+  }
+  button:hover, button:focus {
+    background: #394a56;
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgb(57 74 86 / 0.7);
+    outline: 3px solid #a0b4c2;
+  }
+  /* Slide font animations */
+  /* Slide 1: fade in + pop */
+  .slide1-text {
+    font-size: 2.8rem;
+    font-family: 'Pacifico', cursive;
+    color: #556270;
+    animation: fadePop 2s ease forwards;
+  }
+  @keyframes fadePop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  /* Slide 1 Subtitle */
+  .slide1-sub {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #7f8c8d;
+    animation: bounceIn 2s ease 0.7s forwards;
+    opacity: 0;
+  }
+  @keyframes bounceIn {
+    0% {opacity: 0; transform: translateY(50px);}
+    60% {opacity:1; transform: translateY(-10px);}
+    80% {transform: translateY(5px);}
+    100% {transform: translateY(0);}
+  }
+  /* Slide 1 background */
+  .slide1 {
+    background: #f5f1e9;
+  }
+
+  /* Slide 2: soft dusty pink background */
+  .slide2-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.6rem;
+    color: #b85c5c;
+    font-weight: 600;
+    animation: slide2Fade 2.5s ease forwards;
+    opacity: 0;
+  }
+  @keyframes slide2Fade {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  .slide2 {
+    background: #f7e6e6;
+  }
+
+  /* Slide 3: muted sage green */
+  .slide3-text {
+    font-size: 3rem;
+    color: #6a756d;
+    animation: gentleScaleRotate 3.5s ease forwards;
+    font-weight: 600;
+    opacity: 0;
+  }
+  @keyframes gentleScaleRotate {
+    0% {opacity: 0; transform: scale(0.8) rotate(-10deg);}
+    100% {opacity:1; transform: scale(1) rotate(0deg);}
+  }
+  .slide3 {
+    background: #e6f0e8;
+  }
+
+  /* Slide 4: soft blue-gray */
+  .slide4-text {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #556270;
+    opacity: 0;
+    animation: gentleSlideUp 3s ease forwards;
+  }
+  @keyframes gentleSlideUp {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+  .slide4 {
+    background: #d8dde6;
+  }
+
+  /* Slide 5: soft lavender background */
+  .slide5-text {
+    font-family: monospace, monospace;
+    font-size: 2rem;
+    color: #615375;
+    border-right: 4px solid #615375;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation:
+      typing 4s steps(40, end) forwards,
+      blinkCaret 0.75s step-end infinite;
+  }
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 26ch; }
+  }
+  @keyframes blinkCaret {
+    0%, 100% {border-color: transparent;}
+    50% {border-color: #615375;}
+  }
+  .slide5 {
+    background: #f3e8f1;
+  }
+
+  /* Slide 6: soft stone gray */
+  .slide6-text {
+    font-size: 2.8rem;
+    color: #7a7a7a;
+    position: relative;
+    animation: slowDrift 6s ease-in-out infinite alternate;
+    font-weight: 700;
+    opacity: 0.9;
+    user-select: text;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-name: slide6FadeIn;
+    animation-duration: 1.8s;
+  }
+  @keyframes slowDrift {
+    0% {transform: translateX(0) translateY(0);}
+    50% {transform: translateX(12px) translateY(-8px);}
+    100% {transform: translateX(0) translateY(0);}
+  }
+  @keyframes slide6FadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 0.9; transform: translateY(0);}
+  }
+  .slide6 {
+    background: #e1e1e1;
+  }
+
+  /* Slide 7: clean off-white with shadow */
+  .slide7-text {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #444;
+    animation: fadeInUp 2s ease forwards;
+    opacity: 0;
+  }
+  .slide7-photo {
+    width: 300px;
+    max-width: 80vw;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    animation: fadeInUp 3s ease 1s forwards;
+    opacity: 0;
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* General next button position */
+  button.next-btn {
+    position: relative;
+    z-index: 10;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <section class="slide slide1 active" id="slide1" aria-label="Slide 1 - Opening and music">
+    <div class="slide1-text" tabindex="0">Selamat Kelulusan Sidang Proposal!</div>
+    <div class="slide1-sub">Mari kita rayakan keberhasilan ini bersama.</div>
+    <button id="startMusicBtn" aria-label="Mulai musik">Mulai Musik</button>
+    <button class="next-btn" aria-label="Lanjut ke slide berikutnya">Berikutnya</button>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide slide2" id="slide2" aria-label="Slide 2">
+    <div class="slide2-text" tabindex="0">Kerja kerasmu terbayar sudah.</div>
+    <button class="next-btn" aria-label="Lanjut ke slide berikutnya">Berikutnya</button>
+  </section>
+
+  <!-- Slide 3 -->
+  <section class="slide slide3" id="slide3" aria-label="Slide 3">
+    <div class="slide3-text" tabindex="0">Jangan pernah berhenti belajar dan berkembang.</div>
+    <button class="next-btn" aria-label="Lanjut ke slide berikutnya">Berikutnya</button>
+  </section>
+
+  <!-- Slide 4 -->
+  <section class="slide slide4" id="slide4" aria-label="Slide 4">
+    <div class="slide4-text" tabindex="0">Masa depan cerah menantimu!</div>
+    <button class="next-btn" aria-label="Lanjut ke slide berikutnya">Berikutnya</button>
+  </section>
+
+  <!-- Slide 5 -->
+  <section class="slide slide5" id="slide5" aria-label="Slide 5">
+    <div class="slide5-text" tabindex="0">Terus semangat mencapai cita-cita terbaikmu.</div>
+    <button class="next-btn" aria-label="Lanjut ke slide berikutnya">Berikutnya</button>
+  </section>
+
+  <!-- Slide 6 -->
+  <section class="slide slide6" id="slide6" aria-label="Slide 6">
+    <div class="slide6-text" tabindex="0">Kamu telah membuktikan kemampuan luar biasa!</div>
+    <button class="next-btn" aria-label="Lanjut ke slide berikutnya">Berikutnya</button>
+  </section>
+
+  <!-- Slide 7 -->
+  <section class="slide slide7" id="slide7" aria-label="Slide 7 - Foto dan ucapan terakhir">
+    <div class="slide7-text" tabindex="0">Selamat dan sukses selalu!</div>
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Foto perayaan kelulusan" class="slide7-photo" />
+  </section>
+
+  <!-- Audio element with a celebratory music -->
+  <audio id="bgMusic" loop preload="auto" >
+    <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_fb5b93b897.mp3?filename=celebration-5670.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+<script>
+  // Manage slides and navigation with smooth fade and slide transitions
+  const slides = document.querySelectorAll('.slide');
+  let currentSlide = 0;
+  let isTransitioning = false;
+
+  const nextButtons = document.querySelectorAll('.next-btn');
+
+  nextButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      if (isTransitioning) return;
+      if (currentSlide < slides.length -1) {
+        await transitionToSlide(currentSlide + 1);
+      }
+    });
+  });
+
+  // Helper: wait for transition end promise
+  function waitTransitionEnd(element) {
+    return new Promise(resolve => {
+      function handler() {
+        element.removeEventListener('transitionend', handler);
+        resolve();
+      }
+      element.addEventListener('transitionend', handler);
+    });
+  }
+
+  async function transitionToSlide(newIndex) {
+    isTransitioning = true;
+    const current = slides[currentSlide];
+    const next = slides[newIndex];
+
+    // Start fade out of current slide
+    current.classList.add('fade-out');
+    // Wait for fade out transition to finish
+    await waitTransitionEnd(current);
+
+    // Hide current slide
+    current.classList.remove('active', 'fade-out');
+
+    // Show next slide but hidden (opacity 0 and translateX from CSS)
+    next.classList.add('active');
+
+    // Wait a frame for transition to trigger
+    requestAnimationFrame(() => {
+      next.style.opacity = '1';
+      next.style.transform = 'translateX(0)';
+    });
+
+    // Wait for fade in transition to finish
+    await waitTransitionEnd(next);
+
+    currentSlide = newIndex;
+    // Focus main content for accessibility
+    const focusEl = next.querySelector('div, img, button');
+    if(focusEl) focusEl.focus();
+
+    isTransitioning = false;
+  }
+
+  // Music start button
+  const music = document.getElementById('bgMusic');
+  const startMusicBtn = document.getElementById('startMusicBtn');
+  startMusicBtn.addEventListener('click', () => {
+    music.play().catch(e => {
+      alert("Gagal memutar musik secara otomatis. Silakan klik tombol play pada perangkat Anda.");
+    });
+    startMusicBtn.disabled = true;
+    startMusicBtn.textContent = 'Musik dimainkan';
+    startMusicBtn.style.background = '#394a56';
+    startMusicBtn.style.cursor = 'default';
+  });
+  
+  // Accessibility: Enable keyboard navigation: Enter key activates buttons
+  document.body.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && document.activeElement.tagName === 'BUTTON') {
+      document.activeElement.click();
+    }
+  });
+</script>
+
+</body>
+</html>
+

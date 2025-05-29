@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Pacifico&family=Roboto+Slab&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: #f8f6f0;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Dynamic floating background shapes */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #d2c4b7 30%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+  animation: floatMove 18s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #a3978e 30%, transparent 70%);
+  top: 40%;
+  left: 70%;
+  animation-duration: 25s;
+  animation-direction: alternate-reverse;
+  opacity: 0.2;
+}
+
+body::before {
+  top: 20%;
+  left: 15%;
+}
+
+/* Floating animation for background shapes */
+@keyframes floatMove {
+  0% {
+    transform: translate(0,0) scale(1);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate(50px, 30px) scale(1.1);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate(0,0) scale(1);
+    opacity: 0.25;
+  }
+}
+
+.slide {
+  position: absolute;
+  width: 90vw;
+  max-width: 700px;
+  height: 80vh;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255 255 255 / 0.85);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  user-select: none;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  z-index: 1;
+}
+
+.slide.active {
+  display: flex;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* To fade out smoothly */
+.slide.fade-out {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+button {
+  margin-top: 30px;
+  background: #556270;
+  color: #f8f6f0;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgb(85 98 112 / 0.4);
+  outline-offset: 3px;
+  z-index: 2;
+}
+
+button:hover, button:focus {
+  background: #394a56;
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgb(57 74 86 / 0.7);
+  outline: 3px solid #a0b4c2;
+}
+
+/* Slide font animations */
+/* Slide 1: fade in + pop */
+.slide1-text {
+  font-size: 2.8rem;
+  font-family: 'Pacifico', cursive;
+  color: #556270;
+  animation: fadePop 2s ease forwards;
+}
+@keyframes fadePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Slide 1 Subtitle */
+.slide1-sub {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #7f8c8d;
+  animation: bounceIn 2s ease 0.7s forwards;
+  opacity: 0;
+}
+@keyframes bounceIn {
+  0% {opacity: 0; transform: translateY(50px);}
+  60% {opacity:1; transform: translateY(-10px);}
+  80% {transform: translateY(5px);}
+  100% {transform: translateY(0);}
+}
+/* Slide 1 background */
+.slide1 {
+  background: #f5f1e9;
+}
+
+/* Slide 2: soft dusty pink background */
+.slide2-text {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2.6rem;
+  color: #b85c5c;
+  font-weight: 600;
+  animation: slide2Fade 2.5s ease forwards;
+  opacity: 0;
+}
+@keyframes slide2Fade {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.slide2 {
+  background: #f7e6e6;
+}
+
+/* Slide 3: muted sage green */
+.slide3-text {
+  font-size: 3rem;
+  color: #6a756d;
+  animation: gentleScaleRotate 3.5s ease forwards;
+  font-weight: 600;
+  opacity: 0;
+}
+@keyframes gentleScaleRotate {
+  0% {opacity: 0; transform: scale(0.8) rotate(-10deg);}
+  100% {opacity:1; transform: scale(1) rotate(0deg);}
+}
+.slide3 {
+  background: #e6f0e8;
+}
+
+/* Slide 4: soft blue-gray */
+.slide4-text {
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #556270;
+  opacity: 0;
+  animation: gentleSlideUp 3s ease forwards;
+}
+@keyframes gentleSlideUp {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+.slide4 {
+  background: #d8dde6;
+}
+
+/* Slide 5: soft lavender background */
+.slide5-text {
+  font-family: monospace, monospace;
+  font-size: 2rem;
+  color: #615375;
+  border-right: 4px solid #615375;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation:
+    typing 4s steps(40, end) forwards,
+    blinkCaret 0.75s step-end infinite;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 26ch; }
+}
+@keyframes blinkCaret {
+  0%, 100% {border-color: transparent;}
+  50% {border-color: #615375;}
+}
+.slide5 {
+  background: #f3e8f1;
+}
+
+/* Slide 6: soft stone gray */
+.slide6-text {
+  font-size: 2.8rem;
+  color: #7a7a7a;
+  position: relative;
+  animation: slowDrift 6s ease-in-out infinite alternate;
+  font-weight: 700;
+  opacity: 0.9;
+  user-select: text;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: slide6FadeIn;
+  animation-duration: 1.8s;
+}
+@keyframes slowDrift {
+  0% {transform: translateX(0) translateY(0);}
+  50% {transform: translateX(12px) translateY(-8px);}
+  100% {transform: translateX(0) translateY(0);}
+}
+@keyframes slide6FadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 0.9; transform: translateY(0);}
+}
+.slide6 {
+  background: #e1e1e1;
+}
+
+/* Slide 7: clean off-white with shadow */
+.slide7-text {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #444;
+  animation: fadeInUp 2s ease forwards;
+  opacity: 0;
+  z-index: 2;
+}
+.slide7-photo {
+  width: 300px;
+  max-width: 80vw;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  animation: fadeInUp 3s ease 1s forwards;
+  opacity: 0;
+  z-index: 2;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* General next button position */
+button.next-btn {
+  position: relative;
+  z-index: 10;
+}
+
